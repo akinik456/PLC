@@ -25,6 +25,7 @@ static const PlcStep sequence0Steps[] =
 		.expectedState = true,         /* Wait for I1 ON */
 
 		.transitionTimeMs = 0,
+		.timeoutMs = 3000,
 		.nextStep = 1
 	},
 
@@ -36,6 +37,7 @@ static const PlcStep sequence0Steps[] =
 	    .expectedState = false,        /* Not used */
 
 	    .transitionTimeMs = 1000,
+		.timeoutMs = 0,
 	    .nextStep = 0
 	}
 };
@@ -59,6 +61,7 @@ static const PlcStep sequence1Steps[] =
         .transitionValue = 0,
 
         .transitionTimeMs = 500,
+		.timeoutMs = 0,
         .nextStep = 1
     },
 
@@ -70,6 +73,7 @@ static const PlcStep sequence1Steps[] =
 	    .expectedState = false,        /* Not used */
 
 	    .transitionTimeMs = 1000,
+		.timeoutMs = 0,
 	    .nextStep = 0
 	}
 };

@@ -32,6 +32,8 @@ typedef struct
 
     uint32_t transitionTimeMs;
 
+    uint32_t timeoutMs;        /* 0 = timeout disabled */
+
     uint16_t nextStep;
 
 } PlcStep;

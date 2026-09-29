@@ -73,6 +73,14 @@ void PlcRuntime_Stop(void)
 	    runtimeContext.io.digitalOutputs = 0;
 }
 
+static void PlcRuntime_EnterStep(
+    PlcSequenceRuntime *sequenceRuntime,
+    uint16_t newStep)
+{
+    sequenceRuntime->currentStep = newStep;
+    sequenceRuntime->stepElapsedMs = 0;
+}
+
 static bool PlcRuntime_IsTransitionTrue(
     const PlcStep *step,
     PlcSequenceRuntime *sequenceRuntime,
@@ -246,16 +254,21 @@ void PlcRuntime_Scan(uint32_t elapsedMs)
                 sequenceRuntime,
                 runtimeContext.io.digitalInputs))
         {
-            sequenceRuntime->stepElapsedMs = 0;
-
             if (step->nextStep < sequence->stepCount)
             {
-                sequenceRuntime->currentStep = step->nextStep;
+                PlcRuntime_EnterStep(
+                    sequenceRuntime,
+                    step->nextStep);
             }
             else
             {
                 sequenceRuntime->faulted = true;
             }
+        }
+        else if ((step->timeoutMs > 0) &&
+                 (sequenceRuntime->stepElapsedMs >= step->timeoutMs))
+        {
+            sequenceRuntime->faulted = true;
         }
     }
 
