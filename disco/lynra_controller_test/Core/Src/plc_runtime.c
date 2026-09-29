@@ -91,15 +91,19 @@ static bool PlcRuntime_IsTransitionTrue(
             break;
 
 
-        case PLC_TRANSITION_INPUT_ON:
+        case PLC_TRANSITION_INPUT:
+        {
+            bool inputState =
+                (digitalInputs &
+                 (1UL << step->transitionValue)) != 0;
 
-            if (digitalInputs &
-                (1UL << step->transitionValue))
+            if (inputState == step->expectedState)
             {
                 return true;
             }
 
             break;
+        }
 
 
         default:

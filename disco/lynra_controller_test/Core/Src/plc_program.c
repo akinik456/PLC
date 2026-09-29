@@ -17,25 +17,27 @@
 
 static const PlcStep sequence0Steps[] =
 {
-    {
-        .outputs = 0x00000000,
+	{
+		.outputs = 0x00000000,
 
-        .transitionType = PLC_TRANSITION_INPUT_ON,
-        .transitionValue = 0,              /* I1 */
+		.transitionType = PLC_TRANSITION_INPUT,
+		.transitionValue = 0,          /* I1 */
+		.expectedState = true,         /* Wait for I1 ON */
 
-        .transitionTimeMs = 0,
-        .nextStep = 1
-    },
+		.transitionTimeMs = 0,
+		.nextStep = 1
+	},
 
-    {
-        .outputs = (1UL << 0),             /* Q1 */
+	{
+	    .outputs = (1UL << 0),
 
-        .transitionType = PLC_TRANSITION_TIME,
-        .transitionValue = 0,
+	    .transitionType = PLC_TRANSITION_TIME,
+	    .transitionValue = 0,
+	    .expectedState = false,        /* Not used */
 
-        .transitionTimeMs = 1000,
-        .nextStep = 0
-    }
+	    .transitionTimeMs = 1000,
+	    .nextStep = 0
+	}
 };
 
 
@@ -60,15 +62,16 @@ static const PlcStep sequence1Steps[] =
         .nextStep = 1
     },
 
-    {
-        .outputs = (1UL << 1),             /* Q2 */
+	{
+	    .outputs = (1UL << 1),
 
-        .transitionType = PLC_TRANSITION_TIME,
-        .transitionValue = 0,
+	    .transitionType = PLC_TRANSITION_TIME,
+	    .transitionValue = 0,
+	    .expectedState = false,        /* Not used */
 
-        .transitionTimeMs = 500,
-        .nextStep = 0
-    }
+	    .transitionTimeMs = 1000,
+	    .nextStep = 0
+	}
 };
 
 

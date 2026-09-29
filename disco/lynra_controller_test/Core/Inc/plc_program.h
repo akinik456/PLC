@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "plc_types.h"
+#include <stdbool.h>
 
 /* =========================================================
  * STEP TRANSITION TYPE
@@ -11,7 +12,7 @@
 typedef enum
 {
     PLC_TRANSITION_TIME = 0,
-    PLC_TRANSITION_INPUT_ON
+    PLC_TRANSITION_INPUT
 
 } PlcTransitionType;
 
@@ -27,6 +28,8 @@ typedef struct
     PlcTransitionType transitionType;
 
     uint16_t transitionValue;
+    bool expectedState;
+
     uint32_t transitionTimeMs;
 
     uint16_t nextStep;
