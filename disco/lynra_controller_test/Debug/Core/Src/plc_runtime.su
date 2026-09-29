@@ -1,0 +1,9 @@
+../Core/Src/plc_runtime.c:19:6:PlcRuntime_Init	24	static
+../Core/Src/plc_runtime.c:53:6:PlcRuntime_Start	4	static
+../Core/Src/plc_runtime.c:68:6:PlcRuntime_Stop	4	static
+../Core/Src/plc_runtime.c:76:13:PlcRuntime_IsTransitionTrue	24	static
+../Core/Src/plc_runtime.c:113:13:PlcRuntime_EvaluateInterlocks	24	static
+../Core/Src/plc_runtime.c:161:6:PlcRuntime_Scan	48	static
+../Core/Src/plc_runtime.c:305:6:PlcRuntime_SetOutputChangeEnable	16	static
+../Core/Src/plc_runtime.c:326:6:PlcRuntime_SetInputs	16	static
+../Core/Src/plc_runtime.c:335:26:PlcRuntime_GetContext	4	static
