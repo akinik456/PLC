@@ -36,6 +36,14 @@ typedef struct
 
 } PlcIoImage;
 
+typedef enum
+{
+    PLC_FAULT_NONE = 0,
+    PLC_FAULT_STEP_TIMEOUT,
+    PLC_FAULT_INVALID_STEP
+
+} PlcFaultCode;
+
 
 /* =========================================================
  * PLC SEQUENCE RUNTIME
@@ -46,14 +54,14 @@ typedef struct
 typedef struct
 {
     uint16_t currentStep;
-
     uint32_t stepElapsedMs;
 
     bool active;
     bool faulted;
 
-} PlcSequenceRuntime;
+    PlcFaultCode faultCode;
 
+} PlcSequenceRuntime;
 /* =========================================================
  * PLC RUNTIME CONTEXT
  *

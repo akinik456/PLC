@@ -38,10 +38,11 @@ void PlcRuntime_Init(const PlcProgram *program)
          (i < PLC_MAX_SEQUENCES);
          i++)
     {
-        runtimeContext.sequences[i].currentStep = 0;
-        runtimeContext.sequences[i].stepElapsedMs = 0;
-        runtimeContext.sequences[i].active = true;
-        runtimeContext.sequences[i].faulted = false;
+    	runtimeContext.sequences[i].currentStep = 0;
+    	runtimeContext.sequences[i].stepElapsedMs = 0;
+    	runtimeContext.sequences[i].active = true;
+    	runtimeContext.sequences[i].faulted = false;
+    	runtimeContext.sequences[i].faultCode = PLC_FAULT_NONE;
     }
 }
 
@@ -166,6 +167,14 @@ static void PlcRuntime_EvaluateInterlocks(void)
         }
     }
 }
+
+static void PlcRuntime_SetSequenceFault(
+    PlcSequenceRuntime *sequenceRuntime,
+    PlcFaultCode faultCode)
+{
+    sequenceRuntime->faulted = true;
+    sequenceRuntime->faultCode = faultCode;
+}
 /* =========================================================
  * SCAN
  * ========================================================= */
@@ -220,7 +229,10 @@ void PlcRuntime_Scan(uint32_t elapsedMs)
 
         if (sequenceRuntime->currentStep >= sequence->stepCount)
         {
-            sequenceRuntime->faulted = true;
+            PlcRuntime_SetSequenceFault(
+                sequenceRuntime,
+                PLC_FAULT_INVALID_STEP);
+
             continue;
         }
 
@@ -262,13 +274,17 @@ void PlcRuntime_Scan(uint32_t elapsedMs)
             }
             else
             {
-                sequenceRuntime->faulted = true;
+            	PlcRuntime_SetSequenceFault(
+            	    sequenceRuntime,
+            	    PLC_FAULT_INVALID_STEP);
             }
         }
         else if ((step->timeoutMs > 0) &&
                  (sequenceRuntime->stepElapsedMs >= step->timeoutMs))
         {
-            sequenceRuntime->faulted = true;
+            PlcRuntime_SetSequenceFault(
+                sequenceRuntime,
+                PLC_FAULT_STEP_TIMEOUT);
         }
     }
 
