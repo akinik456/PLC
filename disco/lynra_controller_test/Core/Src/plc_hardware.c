@@ -23,17 +23,17 @@ uint32_t PlcHardware_ReadInputs(void)
 {
     uint32_t inputs = 0;
 
-
-    /*
-     * I1 -> F429 Discovery USER button
-     *       PA0
-     */
-
+    /* I1 - USER button PA0 - active HIGH */
     if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET)
     {
         inputs |= (1UL << 0);
     }
 
+    /* I2 - PE2 - active LOW */
+    if (HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_2) == GPIO_PIN_RESET)
+    {
+        inputs |= (1UL << 1);
+    }
 
     return inputs;
 }

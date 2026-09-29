@@ -9,9 +9,9 @@
 ../Core/Src/main.c:495:13:MX_USART1_UART_Init	2
 ../Core/Src/main.c:524:13:MX_FMC_Init	2
 ../Core/Src/main.c:575:13:MX_GPIO_Init	1
-../Core/Src/main.c:662:13:UartProtocolTx	1
-../Core/Src/main.c:676:6:StartDefaultTask	1
-../Core/Src/main.c:695:6:StartUartTask	6
-../Core/Src/main.c:746:6:StartPlcTask	1
-../Core/Src/main.c:796:6:HAL_TIM_PeriodElapsedCallback	2
-../Core/Src/main.c:814:6:Error_Handler	1
+../Core/Src/main.c:668:13:UartProtocolTx	1
+../Core/Src/main.c:682:6:StartDefaultTask	1
+../Core/Src/main.c:701:6:StartUartTask	6
+../Core/Src/main.c:752:6:StartPlcTask	1
+../Core/Src/main.c:803:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Src/main.c:821:6:Error_Handler	1

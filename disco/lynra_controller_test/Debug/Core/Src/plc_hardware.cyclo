@@ -1,3 +1,3 @@
 ../Core/Src/plc_hardware.c:10:6:PlcHardware_Init	1
-../Core/Src/plc_hardware.c:22:10:PlcHardware_ReadInputs	2
+../Core/Src/plc_hardware.c:22:10:PlcHardware_ReadInputs	3
 ../Core/Src/plc_hardware.c:46:6:PlcHardware_ApplyOutputs	4

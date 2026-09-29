@@ -21,11 +21,12 @@ static const PlcStep sequence0Steps[] =
 		.outputs = 0x00000000,
 
 		.transitionType = PLC_TRANSITION_INPUT,
-		.transitionValue = 0,          /* I1 */
-		.expectedState = true,         /* Wait for I1 ON */
+		.transitionValue = 1,          /* I2 - PE2 */
+		.expectedState = true,         /* Wait for I2 ON */
 
 		.transitionTimeMs = 0,
 		.timeoutMs = 3000,
+
 		.nextStep = 1
 	},
 
